@@ -17,6 +17,7 @@ const ViewModel = () => {
       return res;
     },
   });
+
   useEffect(() => {
     dataRefetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps

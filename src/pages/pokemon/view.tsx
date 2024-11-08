@@ -91,14 +91,13 @@ const View = () => {
         cell: (info) => {
           return info.getValue().types.map((value, index) => {
             return (
-              <BoxTypeDecoration type={value.type.name}>
-                <div
-                  key={index}
-                  className="type-color border border-black-100 w-min p-1 m-1 rounded-md text-sm"
-                >
-                  {value.type.name.toUpperCase()}
-                </div>
-              </BoxTypeDecoration>
+              <div key={index}>
+                <BoxTypeDecoration type={value.type.name}>
+                  <div className="type-color border border-black-100 w-min p-1 m-1 rounded-md text-sm">
+                    {value.type.name.toUpperCase()}
+                  </div>
+                </BoxTypeDecoration>
+              </div>
             );
           });
         },

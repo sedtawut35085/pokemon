@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { IPagination } from "@/types/pagination";
 import { PaginationState, Updater } from "@tanstack/react-table";
 import { IPokemonType, IPokemonData } from "@/service/pokemon/types";
+import { formatTableNumber } from "@/util/formatNumber";
 
 const ViewModel = () => {
   const [pagination, setPagination] = useState<IPagination>({
@@ -47,7 +48,7 @@ const ViewModel = () => {
           setValue("totalRecord", 0);
           return data;
         }
-        data.idFormat = formatNumber(data.id);
+        data.idFormat = formatTableNumber(data.id);
         const a: IPokemonData = {
           name: data.name,
           url: "",
@@ -68,7 +69,7 @@ const ViewModel = () => {
             data.pokemon[index].pokemon.url,
             signal
           );
-          temp.idFormat = formatNumber(temp.id);
+          temp.idFormat = formatTableNumber(temp.id);
           const a: IPokemonData = {
             name: data.pokemon[index].pokemon.name,
             url: data.pokemon[index].pokemon.url,
@@ -90,7 +91,7 @@ const ViewModel = () => {
         let temp = data.results[index].detail;
         temp = await servicePokemonGetDetail(data.results[index].url, signal);
         data.results[index].detail = temp;
-        data.results[index].detail.idFormat = formatNumber(temp.id);
+        data.results[index].detail.idFormat = formatTableNumber(temp.id);
       }
       setPokemonData(data.results);
       setValue("totalRecord", data.count);
@@ -110,11 +111,6 @@ const ViewModel = () => {
 
   const handlePaginationChange = (updater: Updater<PaginationState>) => {
     setPagination(updater);
-  };
-
-  const formatNumber = (number: number) => {
-    const formattedNumber = number.toString().padStart(4, "0");
-    return formattedNumber;
   };
 
   useEffect(() => {

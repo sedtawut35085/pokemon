@@ -3,6 +3,7 @@ import Pokemon from "@/pages/pokemon/view";
 import PokemonDetail from "@/pages/pokemonDetail/view";
 
 function Router() {
+  console.log("ddd");
   return (
     <>
       <BrowserRouter>
