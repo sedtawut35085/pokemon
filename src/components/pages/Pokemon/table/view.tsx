@@ -5,6 +5,7 @@ import SortDown from "@/assets/SortDown.svg";
 import DefaultSort from "@/assets/DefaultSort.svg";
 
 import styled from "styled-components";
+import ViewModel from "./viewModel";
 interface ITableProps {
   table: Table<any>;
   isLoading: boolean;
@@ -18,9 +19,11 @@ const View = ({
   total,
   isPagination,
 }: ITableProps) => {
+  const { handleNavigateToDetail } = ViewModel();
   return (
-    <div>
-      <BoxDecoration>
+    <div className="flex justify-center"
+    >
+      <BoxDecoration className="overflow-x-auto">
         <table>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -77,7 +80,13 @@ const View = ({
             {!isLoading &&
               table.getRowModel().rows.map((row) => {
                 return (
-                  <tr key={row.id} className="border-b-[1px] border-gray">
+                  <tr
+                    key={row.id}
+                    className="border-b-[1px] border-gray"
+                    onClick={() =>
+                      handleNavigateToDetail(row.original.detail.id)
+                    }
+                  >
                     {row.getVisibleCells().map((cell) => {
                       return (
                         <td key={cell.id}>
@@ -103,6 +112,7 @@ const View = ({
 
 const BoxDecoration = styled.div`
   th {
+    min-width: 100px;
     height: 50px;
     color: black;
     background-color: beige;
@@ -175,6 +185,9 @@ const BoxDecoration = styled.div`
     flex: 1;
     text-align: left;
     padding-left: 10px;
+  }
+  td {
+    min-width: 100px;
   }
   td:nth-child(2) {
     padding-left: 10px;

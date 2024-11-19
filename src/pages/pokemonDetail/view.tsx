@@ -37,9 +37,9 @@ const View = () => {
           </div>
         </div>
         <div className="flex flex-col h-screen w-screen pt-16">
-          <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
+          <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
             {/* left */}
-            <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
+            <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col justify-center items-end gap-6">
                 <div className="transform skew-y-12 text-black mr-2">ID</div>
                 <div className="transform skew-y-12 text-black mr-2">
@@ -81,7 +81,7 @@ const View = () => {
                     })}
                   </div>
                 </div>
-                <div className="transform -skew-y-3">
+                <div className="transform -skew-y-2">
                   <div className="flex flex-row gap-1 ">
                     {data?.types.map((value, index) => {
                       return (
@@ -125,7 +125,7 @@ const View = () => {
               </div>
             </div>
             {/* right */}
-            <div className="flex flex-col bg-yellow-50 justify-center w-full">
+            <div className="flex flex-col justify-center w-full">
               <div className="flex flex-row gap-10 justify-center">
                 <div className="border rounded-full px-2">Base</div>
                 <div className="border rounded-full px-2">Min</div>

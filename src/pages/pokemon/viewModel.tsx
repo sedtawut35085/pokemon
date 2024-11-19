@@ -43,7 +43,7 @@ const ViewModel = () => {
       if (watch("search") != "") {
         console.log("call api search : ", watch("search"));
         const data = await servicePokemonSearch(watch("search"), signal);
-        if (data.id == undefined) {
+        if (data.id === undefined) {
           setPokemonData(dataMap);
           setValue("totalRecord", 0);
           return data;
@@ -58,7 +58,7 @@ const ViewModel = () => {
         setPokemonData(dataMap);
         setValue("totalRecord", dataMap.length);
         return data;
-      } else if (watch("selectType") != "" && watch("selectType") != "all") {
+      } else if (watch("selectType") !== "" && watch("selectType") !== "all") {
         console.log("call api type : ", watch("selectType"));
         const data = await servicePokemonSelectType(
           watch("selectType"),
@@ -98,6 +98,7 @@ const ViewModel = () => {
       return data;
     },
     refetchOnWindowFocus: false,
+    // enabled: 
   });
 
   const { refetch: dataRefetchGetType } = useQuery({
@@ -109,7 +110,7 @@ const ViewModel = () => {
     },
   });
 
-  const handlePaginationChange = (updater: Updater<PaginationState>) => {
+  const handlePaginationChange = (updater: Updater<PaginationState>): void => {
     setPagination(updater);
   };
 

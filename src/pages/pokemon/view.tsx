@@ -92,10 +92,11 @@ const View = () => {
           return info.getValue().types.map((value, index) => {
             return (
               <div key={index}>
-                <BoxTypeDecoration type={value.type.name}>
-                  <div className="type-color border border-black-100 w-min p-1 m-1 rounded-md text-sm">
-                    {value.type.name.toUpperCase()}
-                  </div>
+                <BoxTypeDecoration
+                  type={value.type.name}
+                  className="border border-black-100 w-min p-1 m-1 rounded-md text-sm"
+                >
+                  {value.type.name.toUpperCase()}
                 </BoxTypeDecoration>
               </div>
             );
@@ -252,7 +253,7 @@ const View = () => {
         },
       }),
     ],
-    []
+    [usePokemonData]
   );
 
   const table = useReactTable({
@@ -272,8 +273,8 @@ const View = () => {
   });
 
   return (
-    <div className="flex justify-center m-12">
-      <div className="flex flex-col">
+    <div className="flex m-12">
+      <div className="flex flex-col w-full justify-center">
         <div className="flex flex-row justify-center">
           <div>Name:</div>
           <input
@@ -300,27 +301,25 @@ const View = () => {
               ))}
           </select>
         </div>
-        <h1>Total : {watch("totalRecord")}</h1>
+        <h1 className="flex justify-center">Total : {watch("totalRecord")}</h1>
         <Table
           isLoading={isRefetching || isLoading}
           table={table}
           total={watch("totalRecord")}
           isPagination={watch("selectType") == "all"}
-        ></Table>
+        />
       </div>
     </div>
   );
 };
 
 const BoxTypeDecoration = styled.div<ITypeBoxProps>`
-  .type-color {
-    background-color: ${(props) =>
-      typeBgColorClasses[props.type as keyof typeof typeBgColorClasses] ||
-      "white"};
-    color: ${(props) =>
-      typeTextColorClasses[props.type as keyof typeof typeTextColorClasses] ||
-      "black"};
-  }
+  background-color: ${(props) =>
+    typeBgColorClasses[props.type as keyof typeof typeBgColorClasses] ||
+    "white"};
+  color: ${(props) =>
+    typeTextColorClasses[props.type as keyof typeof typeTextColorClasses] ||
+    "black"};
 `;
 
 export default ViewWrapper;
